@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="shoesSQL.js"></script>
+    <link rel="stylesheet" href="shoesSQL.css">
+</head>
+
+<body>
+    <script>
+        filterShoes('', '', '');
+    </script>
+    <div class="filter-wrapper">
+        <form id="filters">
+            <label for="colours">Szín:</label>
+            <select name="colours" id="colours"
+                onchange="filterShoes(this.value, sizes.value, orderBy.value)"></select>
+
+            <label for="sizes">Méret:</label>
+            <select name="sizes" id="sizes" onchange="filterShoes(colours.value, this.value, orderBy.value)"></select>
+
+            <label for="order-by">Rendezés:</label>
+            <select name="orderBy" id="order-by" onchange="filterShoes(colours.value, sizes.value, this.value)">
+                <option value="">Nincs</option>
+                <option value="PriceRecent">Legolcsóbb elöl</option>
+                <option value="DateOfArrival">Legújabb elöl</option>
+                <option value="Name">Név szerint</option>
+
+            </select>
+        </form>
+        <div id="item-counter"><span name="item-number" id="item-number"></span> db termék</div>
+        <div class="pagination">
+            <button type="button" id="first-page-icon" onclick="changePage(colours.value, sizes.value, orderBy.value, 'first')">&laquo;</button>
+            <button type="button" id="page-down-icon" onclick="changePage(colours.value, sizes.value, orderBy.value, 'before')">&lt;</button>
+            <span id="page-number"></span>
+            <span> / </span>
+            <span id="total-pages"></span>
+            <button type="button" id="page-up-icon" onclick="changePage(colours.value, sizes.value, orderBy.value, 'after')">&gt;</button>
+            <button type="button" id="last-page-icon" onclick="changePage(colours.value, sizes.value, orderBy.value, 'last')">&raquo;</button>
+                
+        </div>
+    </div>
+
+
+    <div class="item-wrapper" id="item-wrapper"></div>
+
+</body>
+
+</html>
